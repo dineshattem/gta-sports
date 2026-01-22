@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grand Pickleball League (GPL)</title>
+
+  <!-- Fonts (optional, still static) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__mark">GPL</div>
+        <div class="brand__text">
+          <div class="brand__title">Grand Pickleball League</div>
+          <div class="brand__subtitle">Live Brackets • Stages • Standings</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#live">Live</a>
+        <a href="#players">Players</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#venue">Venue</a>
+        <a class="btn btn--sm" href="#register">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__bg"></div>
+
+      <div class="container hero__inner">
+        <div class="hero__left">
+          <div class="badge">
+            <div class="badge__top">GRAND</div>
+            <div class="badge__mid">PICKLEBALL</div>
+            <div class="badge__bot">LEAGUE</div>
+            <div class="badge__tag">GPL</div>
+          </div>
+
+          <div class="ribbon">
+            <span class="ribbon__pill">Jan 31st (Saturday)</span>
+            <span class="ribbon__pill">10:00 AM – 4:00 PM</span>
+          </div>
+
+          <div class="callouts">
+            <div class="callout">
+              <div class="callout__title">Prize Pool</div>
+              <div class="callout__value">$500</div>
+              <div class="callout__sub">Cash prizes + trophies</div>
+            </div>
+            <div class="callout callout--alt">
+              <div class="callout__title">Perks</div>
+              <div class="callout__value">Free</div>
+              <div class="callout__sub">Snacks & drinks</div>
+            </div>
+          </div>
+
+          <div class="ctaRow" id="register">
+            <a class="btn" href="YOUR_REGISTRATION_LINK" target="_blank" rel="noopener">Register Now</a>
+            <a class="btn btn--ghost" href="#live">View Live Bracket</a>
+          </div>
+
+          <p class="note">
+            Customized jerseys for all players • Premium pickleball experience
+          </p>
+        </div>
+
+        <div class="hero__right">
+          <div class="card qrCard">
+            <div class="card__title">Scan to Register</div>
+            <div class="qrBox">
+              <!-- Replace with your QR image -->
+              <img src="qr.png" alt="Registration QR Code" />
+            </div>
+            <div class="card__hint">Or tap “Register Now”</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE -->
+    <section class="section" id="live">
+      <div class="container">
+        <div class="section__head">
+          <h2>Live Bracket</h2>
+          <p>Stages, player stats, and results update live from BracketMaker.</p>
+        </div>
+
+        <div class="embedFrame">
+          <!-- Option 1: BracketMaker embed (paste their iframe/widget code here) -->
+          <!-- Example: <iframe src="..." loading="lazy" referrerpolicy="no-referrer"></iframe> -->
+
+          <!-- Placeholder -->
+          <div class="embedPlaceholder">
+            Paste your BracketMaker embed code here (iframe/widget).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYERS -->
+    <section class="section" id="players">
+      <div class="container">
+        <div class="section__head">
+          <h2>Players</h2>
+          <p>Search and filter (static list or fed from BracketMaker embed/page).</p>
+        </div>
+
+        <div class="toolbar">
+          <input id="playerSearch" class="input" placeholder="Search players…" />
+        </div>
+
+        <div class="grid" id="playerGrid">
+          <!-- Sample cards (replace with your real list) -->
+          <article class="pCard" data-name="Asha Reddy">
+            <div class="pCard__name">Asha Reddy</div>
+            <div class="pCard__meta">Category • Team</div>
+          </article>
+          <article class="pCard" data-name="Vikram Kumar">
+            <div class="pCard__name">Vikram Kumar</div>
+            <div class="pCard__meta">Category • Team</div>
+          </article>
+          <article class="pCard" data-name="Neha Sharma">
+            <div class="pCard__name">Neha Sharma</div>
+            <div class="pCard__meta">Category • Team</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="section" id="schedule">
+      <div class="container">
+        <div class="section__head">
+          <h2>Schedule</h2>
+          <p>Simple, readable schedule layout.</p>
+        </div>
+
+        <div class="card tableCard">
+          <div class="row">
+            <span class="chip">10:00 AM</span>
+            <span>Check-in + Warmup</span>
+          </div>
+          <div class="row">
+            <span class="chip">11:00 AM</span>
+            <span>Group Stage Begins</span>
+          </div>
+          <div class="row">
+            <span class="chip">02:30 PM</span>
+            <span>Knockouts</span>
+          </div>
+          <div class="row">
+            <span class="chip">04:00 PM</span>
+            <span>Finals + Awards</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENUE -->
+    <section class="section" id="venue">
+      <div class="container">
+        <div class="section__head">
+          <h2>Venue</h2>
+          <p>Premier Pickleball Club</p>
+        </div>
+
+        <div class="venueCard">
+          <div class="venueCard__left">
+            <div class="venueCard__title">5163 Denali Park Dr</div>
+            <div class="venueCard__sub">Herriman, UT 84096</div>
+            <div class="ctaRow">
+              <a class="btn btn--ghost" target="_blank" rel="noopener"
+                 href="https://www.google.com/maps/search/?api=1&query=5163+Denali+Park+Dr+Herriman+UT+84096">
+                Open in Maps
+              </a>
+            </div>
+          </div>
+          <div class="venueCard__right">
+            <div class="mini">
+              <div class="mini__label">Contact</div>
+              <div class="mini__val">VP – Sports: 870-530-7896</div>
+            </div>
+            <div class="mini">
+              <div class="mini__label">Contact</div>
+              <div class="mini__val">President: 814-923-7569</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>© GPL • GTA Utah</div>
+        <div class="footer__links">
+          <a href="#register">Register</a>
+          <a href="#live">Live Bracket</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
