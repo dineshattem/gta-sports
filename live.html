@@ -89,6 +89,12 @@
 </div>
 
 <style>
+  /* Ensure page content doesn't overlap header */
+  .section {
+    position: relative;
+    z-index: 1;
+  }
+  
   .division-tabs {
     display: flex;
     gap: 10px;
@@ -121,6 +127,8 @@
   
   .division-content {
     display: none;
+    position: relative;
+    z-index: 1;
   }
   
   .division-content.active {
@@ -199,6 +207,8 @@
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
   }
   
   .bracket-frame iframe {
