@@ -92,9 +92,49 @@
 <section class="section" style="margin-top: 140px;">
   <div class="container">
     <h2>Registered Teams</h2>
-    <p style="color: var(--text-muted); margin-bottom: 20px;">45 Doubles Teams • 90 Players</p>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">48 Doubles Teams • 96 Players</p>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="playerSearch" placeholder="Search by player name..." onkeyup="searchPlayers()">
+    </div>
     
     <style>
+      .search-container {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      
+      .search-container input {
+        width: 100%;
+        padding: 15px 20px 15px 50px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--cream);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+      
+      .search-container input:focus {
+        outline: none;
+        border-color: var(--orange);
+      }
+      
+      .search-container input::placeholder {
+        color: var(--text-muted);
+      }
+      
+      .search-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.1rem;
+        opacity: 0.6;
+      }
+      
       .division-filter {
         display: flex;
         gap: 10px;
@@ -194,14 +234,40 @@
       .division-badge.div2 { background: #3498db; color: white; }
       .division-badge.div3 { background: #27ae60; color: white; }
       .division-badge.div4 { background: #9b59b6; color: white; }
+      .division-badge.womens { background: #e91e63; color: white; }
+      
+      .group-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--cream);
+      }
       
       .match-time {
         color: var(--orange);
         font-weight: 600;
       }
       
+      .no-results {
+        text-align: center;
+        padding: 40px;
+        color: var(--text-muted);
+        display: none;
+      }
+      
       .teams-grid {
         display: none;
+      }
+      
+      @media (max-width: 900px) {
+        .teams-table th:nth-child(4),
+        .teams-table td:nth-child(4) {
+          display: none;
+        }
       }
       
       @media (max-width: 768px) {
@@ -260,6 +326,7 @@
       <button class="filter-btn" onclick="filterTeams('div2')">Division 2</button>
       <button class="filter-btn" onclick="filterTeams('div3')">Division 3</button>
       <button class="filter-btn" onclick="filterTeams('div4')">Division 4</button>
+      <button class="filter-btn" onclick="filterTeams('womens')">Women's</button>
     </div>
     
     <!-- Desktop Table View -->
@@ -269,6 +336,7 @@
           <th>#</th>
           <th>Team</th>
           <th>Division</th>
+          <th>Group</th>
           <th>Match Time</th>
         </tr>
       </thead>
@@ -278,142 +346,184 @@
           <td class="team-number">1</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 1</span>
-              <span><span class="player-icon">👤</span> Player 2</span>
+              <span><span class="player-icon">👤</span> Player 1A</span>
+              <span><span class="player-icon">👤</span> Player 1B</span>
             </div>
           </td>
           <td><span class="division-badge div1">Div 1</span></td>
-          <td class="match-time">11:00 AM</td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">12:30 PM</td>
         </tr>
         <tr data-division="div1">
           <td class="team-number">2</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 3</span>
-              <span><span class="player-icon">👤</span> Player 4</span>
+              <span><span class="player-icon">👤</span> Player 2A</span>
+              <span><span class="player-icon">👤</span> Player 2B</span>
             </div>
           </td>
           <td><span class="division-badge div1">Div 1</span></td>
-          <td class="match-time">11:00 AM</td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">12:30 PM</td>
         </tr>
         <tr data-division="div1">
           <td class="team-number">3</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 5</span>
-              <span><span class="player-icon">👤</span> Player 6</span>
+              <span><span class="player-icon">👤</span> Player 3A</span>
+              <span><span class="player-icon">👤</span> Player 3B</span>
             </div>
           </td>
           <td><span class="division-badge div1">Div 1</span></td>
-          <td class="match-time">11:30 AM</td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">12:30 PM</td>
+        </tr>
+        <tr data-division="div1">
+          <td class="team-number">4</td>
+          <td>
+            <div class="player-names">
+              <span><span class="player-icon">👤</span> Player 4A</span>
+              <span><span class="player-icon">👤</span> Player 4B</span>
+            </div>
+          </td>
+          <td><span class="division-badge div1">Div 1</span></td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">12:30 PM</td>
+        </tr>
+        <tr data-division="div1">
+          <td class="team-number">5</td>
+          <td>
+            <div class="player-names">
+              <span><span class="player-icon">👤</span> Player 5A</span>
+              <span><span class="player-icon">👤</span> Player 5B</span>
+            </div>
+          </td>
+          <td><span class="division-badge div1">Div 1</span></td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">12:30 PM</td>
+        </tr>
+        <tr data-division="div1">
+          <td class="team-number">6</td>
+          <td>
+            <div class="player-names">
+              <span><span class="player-icon">👤</span> Player 6A</span>
+              <span><span class="player-icon">👤</span> Player 6B</span>
+            </div>
+          </td>
+          <td><span class="division-badge div1">Div 1</span></td>
+          <td><span class="group-badge">Group A</span></td>
+          <td class="match-time">12:30 PM</td>
         </tr>
         
         <!-- Division 2 Teams -->
         <tr data-division="div2">
-          <td class="team-number">4</td>
+          <td class="team-number">7</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 7</span>
-              <span><span class="player-icon">👤</span> Player 8</span>
+              <span><span class="player-icon">👤</span> Player 7A</span>
+              <span><span class="player-icon">👤</span> Player 7B</span>
             </div>
           </td>
           <td><span class="division-badge div2">Div 2</span></td>
+          <td><span class="group-badge">Group A</span></td>
           <td class="match-time">11:00 AM</td>
         </tr>
         <tr data-division="div2">
-          <td class="team-number">5</td>
+          <td class="team-number">8</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 9</span>
-              <span><span class="player-icon">👤</span> Player 10</span>
+              <span><span class="player-icon">👤</span> Player 8A</span>
+              <span><span class="player-icon">👤</span> Player 8B</span>
             </div>
           </td>
           <td><span class="division-badge div2">Div 2</span></td>
+          <td><span class="group-badge">Group B</span></td>
           <td class="match-time">11:00 AM</td>
-        </tr>
-        <tr data-division="div2">
-          <td class="team-number">6</td>
-          <td>
-            <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 11</span>
-              <span><span class="player-icon">👤</span> Player 12</span>
-            </div>
-          </td>
-          <td><span class="division-badge div2">Div 2</span></td>
-          <td class="match-time">11:30 AM</td>
         </tr>
         
         <!-- Division 3 Teams -->
         <tr data-division="div3">
-          <td class="team-number">7</td>
-          <td>
-            <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 13</span>
-              <span><span class="player-icon">👤</span> Player 14</span>
-            </div>
-          </td>
-          <td><span class="division-badge div3">Div 3</span></td>
-          <td class="match-time">12:00 PM</td>
-        </tr>
-        <tr data-division="div3">
-          <td class="team-number">8</td>
-          <td>
-            <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 15</span>
-              <span><span class="player-icon">👤</span> Player 16</span>
-            </div>
-          </td>
-          <td><span class="division-badge div3">Div 3</span></td>
-          <td class="match-time">12:00 PM</td>
-        </tr>
-        <tr data-division="div3">
           <td class="team-number">9</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 17</span>
-              <span><span class="player-icon">👤</span> Player 18</span>
+              <span><span class="player-icon">👤</span> Player 9A</span>
+              <span><span class="player-icon">👤</span> Player 9B</span>
             </div>
           </td>
           <td><span class="division-badge div3">Div 3</span></td>
-          <td class="match-time">12:30 PM</td>
+          <td><span class="group-badge">Group A</span></td>
+          <td class="match-time">10:00 AM</td>
+        </tr>
+        <tr data-division="div3">
+          <td class="team-number">10</td>
+          <td>
+            <div class="player-names">
+              <span><span class="player-icon">👤</span> Player 10A</span>
+              <span><span class="player-icon">👤</span> Player 10B</span>
+            </div>
+          </td>
+          <td><span class="division-badge div3">Div 3</span></td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">10:00 AM</td>
         </tr>
         
         <!-- Division 4 Teams -->
         <tr data-division="div4">
-          <td class="team-number">10</td>
-          <td>
-            <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 19</span>
-              <span><span class="player-icon">👤</span> Player 20</span>
-            </div>
-          </td>
-          <td><span class="division-badge div4">Div 4</span></td>
-          <td class="match-time">12:00 PM</td>
-        </tr>
-        <tr data-division="div4">
           <td class="team-number">11</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 21</span>
-              <span><span class="player-icon">👤</span> Player 22</span>
+              <span><span class="player-icon">👤</span> Player 11A</span>
+              <span><span class="player-icon">👤</span> Player 11B</span>
             </div>
           </td>
           <td><span class="division-badge div4">Div 4</span></td>
-          <td class="match-time">12:00 PM</td>
+          <td><span class="group-badge">Group A</span></td>
+          <td class="match-time">2:00 PM</td>
         </tr>
         <tr data-division="div4">
           <td class="team-number">12</td>
           <td>
             <div class="player-names">
-              <span><span class="player-icon">👤</span> Player 23</span>
-              <span><span class="player-icon">👤</span> Player 24</span>
+              <span><span class="player-icon">👤</span> Player 12A</span>
+              <span><span class="player-icon">👤</span> Player 12B</span>
             </div>
           </td>
           <td><span class="division-badge div4">Div 4</span></td>
-          <td class="match-time">12:30 PM</td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">2:00 PM</td>
+        </tr>
+        
+        <!-- Women's Division Teams -->
+        <tr data-division="womens">
+          <td class="team-number">13</td>
+          <td>
+            <div class="player-names">
+              <span><span class="player-icon">👤</span> Player 13A</span>
+              <span><span class="player-icon">👤</span> Player 13B</span>
+            </div>
+          </td>
+          <td><span class="division-badge womens">Women's</span></td>
+          <td><span class="group-badge">Group A</span></td>
+          <td class="match-time">3:00 PM</td>
+        </tr>
+        <tr data-division="womens">
+          <td class="team-number">14</td>
+          <td>
+            <div class="player-names">
+              <span><span class="player-icon">👤</span> Player 14A</span>
+              <span><span class="player-icon">👤</span> Player 14B</span>
+            </div>
+          </td>
+          <td><span class="division-badge womens">Women's</span></td>
+          <td><span class="group-badge">Group B</span></td>
+          <td class="match-time">3:00 PM</td>
         </tr>
       </tbody>
     </table>
+    
+    <div class="no-results" id="noResults">
+      <p>No players found matching your search.</p>
+    </div>
     
     <!-- Mobile Card View -->
     <div class="teams-grid" id="teamsGrid">
@@ -427,25 +537,30 @@
 <section class="section section-dark">
   <div class="container">
     <h2>Division Summary</h2>
-    <div class="grid grid-4">
+    <div class="grid" style="grid-template-columns: repeat(5, 1fr);">
       <div class="card" style="border-left: 4px solid #e74c3c;">
         <h3 class="card-title" style="color: #e74c3c;">Division 1</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">12</p>
+        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">10</p>
         <p style="color: var(--text-muted);">Teams</p>
       </div>
       <div class="card" style="border-left: 4px solid #3498db;">
         <h3 class="card-title" style="color: #3498db;">Division 2</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">12</p>
+        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">10</p>
         <p style="color: var(--text-muted);">Teams</p>
       </div>
       <div class="card" style="border-left: 4px solid #27ae60;">
         <h3 class="card-title" style="color: #27ae60;">Division 3</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">11</p>
+        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">10</p>
         <p style="color: var(--text-muted);">Teams</p>
       </div>
       <div class="card" style="border-left: 4px solid #9b59b6;">
         <h3 class="card-title" style="color: #9b59b6;">Division 4</h3>
         <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">10</p>
+        <p style="color: var(--text-muted);">Teams</p>
+      </div>
+      <div class="card" style="border-left: 4px solid #e91e63;">
+        <h3 class="card-title" style="color: #e91e63;">Women's</h3>
+        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">8</p>
         <p style="color: var(--text-muted);">Teams</p>
       </div>
     </div>
@@ -508,23 +623,44 @@
 </style>
 
 <script>
+  // Current filter state
+  let currentFilter = 'all';
+  
+  // Search functionality
+  function searchPlayers() {
+    const searchTerm = document.getElementById('playerSearch').value.toLowerCase();
+    const rows = document.querySelectorAll('#teamsTableBody tr');
+    let visibleCount = 0;
+    
+    rows.forEach(row => {
+      const playerNames = row.querySelector('.player-names').textContent.toLowerCase();
+      const matchesSearch = playerNames.includes(searchTerm);
+      const matchesFilter = currentFilter === 'all' || row.dataset.division === currentFilter;
+      
+      if (matchesSearch && matchesFilter) {
+        row.style.display = '';
+        visibleCount++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+    
+    // Show/hide no results message
+    document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+  
   // Division filter functionality
   function filterTeams(division) {
+    currentFilter = division;
+    
     // Update active button
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.classList.remove('active');
     });
     event.target.classList.add('active');
     
-    // Filter table rows
-    const rows = document.querySelectorAll('#teamsTableBody tr');
-    rows.forEach(row => {
-      if (division === 'all' || row.dataset.division === division) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
-    });
+    // Re-run search with new filter
+    searchPlayers();
   }
 
   // Hamburger Menu Toggle
