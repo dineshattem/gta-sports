@@ -24,10 +24,10 @@
 
     <nav class="nav">
       <a href="index.html">Home</a>
-      <a href="stream.html">Standings</a>
       <a href="schedule.html">Schedule</a>
-      <a href="live.html">Match Center</a>
       <a href="players.html">Players</a>
+      <a href="stream.html">Standings</a>
+      <a href="live.html">Match Center</a>
       <a href="rules.html">Rules</a>
       <a href="venue.html">Venue</a>
       <a class="active" href="contact.html">Contact</a>
@@ -62,10 +62,10 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Home</a>
-  <a href="stream.html">Standings</a>
   <a href="schedule.html">Schedule</a>
-  <a href="live.html">Match Center</a>
   <a href="players.html">Players</a>
+  <a href="stream.html">Standings</a>
+  <a href="live.html">Match Center</a>
   <a href="rules.html">Rules</a>
   <a href="venue.html">Venue</a>
   <a class="active" href="contact.html">Contact</a>
@@ -161,10 +161,10 @@
         <h4>⭐ GTA Utah Board Members</h4>
         <div class="names-grid">
           <span class="name-tag">Vishal Patlolla</span>
-          <span class="name-tag">SaiKiran Bachu</span>
           <span class="name-tag">Vishnu Mogulla</span>
           <span class="name-tag">Bharath Parvath</span>
           <span class="name-tag">Uday Vinjamuri</span>
+          <span class="name-tag">SaiKiran Bachu</span>
           <span class="name-tag">Dinesh Attem</span>
           <span class="name-tag">Kiran Mooga</span>
           <span class="name-tag">Naveen Jadav</span>
@@ -198,7 +198,7 @@
           <span class="name-tag volunteer">Apoorva Bura</span>
           <span class="name-tag volunteer">Sravya Venumuddala</span>
           <span class="name-tag volunteer">Srujana Daram</span>
-          <span class="name-tag volunteer">Sandhya G</span>
+          <span class="name-tag volunteer">Sandhya Gandra</span>
           <span class="name-tag volunteer">Sarika Prodduturi</span>
           <span class="name-tag volunteer">Sherali</span>
           <span class="name-tag volunteer">Akshita</span>
@@ -220,7 +220,9 @@
     <div class="footer-content">
       <div class="footer-brand">
         <img src="assets/gpl-logo.png" alt="Grand Pickleball League">
-        <span class="footer-organized">Organized by</span>
+        <div class="footer-organized-wrapper">
+          <span class="footer-organized">Organized by</span>
+        </div>
         <img src="assets/utahchapter-logo.png" alt="Global Telangana Association Utah" class="footer-gta-logo">
       </div>
     </div>
@@ -247,16 +249,26 @@
   .footer-brand {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
   }
   
   .footer-brand > img:first-child {
     height: 100px;
     width: auto;
+    margin-left: 70px;
+  }
+  
+  .footer-organized-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    margin-left: 10px;
   }
   
   .footer-organized {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
     font-style: italic;
   }
@@ -264,6 +276,8 @@
   .footer-gta-logo {
     height: 130px;
     width: auto;
+    margin-right: 70px;
+    margin-top: -10px;
   }
   
   .footer-gta-wrapper {

@@ -140,11 +140,12 @@ a {
 }
 
 .brand-gta img {
-  height: 150px;
+  height: 135px;
   width: auto;
   max-width: 300px;
   object-fit: contain;
   transition: all 0.3s ease;
+  margin-top: -20px;
 }
 
 .brand-gta:hover img {
