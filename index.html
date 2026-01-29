@@ -91,15 +91,6 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-main">
-    <!-- Background Video (YouTube) -->
-    <div class="hero-video-bg" id="heroVideoBg">
-      <iframe id="heroYoutubeVideo" 
-        src="" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
     <div class="hero-content">
       <!-- Organized By Badge -->
       <p class="presented-by">A <span>Global Telangana Association (GTA)</span> Utah Sports Event</p>
@@ -389,50 +380,40 @@
   </div>
 </section>
 
-<!-- Video Modal Popup -->
+<!-- Promo Video Section -->
+<section class="promo-video-section" id="promoVideo">
+  <iframe id="heroYoutubeVideo" 
+    src="" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</section>
+
 <style>
-  .hero-video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .promo-video-section {
+    position: relative;
     width: 100%;
-    height: 100%;
-    z-index: 0;
-    opacity: 0;
-    transition: opacity 1s ease;
-    pointer-events: none;
+    height: 100vh;
+    background: #000;
     overflow: hidden;
   }
   
-  .hero-video-bg.active {
-    opacity: 1;
-  }
-  
-  .hero-video-bg iframe {
+  .promo-video-section iframe {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
-    height: 100%;
-    min-width: 100%;
-    min-height: 100%;
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.78vh;
     transform: translate(-50%, -50%);
-    pointer-events: none;
   }
   
-  .hero-main {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-  
-  .hero-main.video-playing {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.75), rgba(15, 15, 26, 0.7));
-  }
-  
-  .hero-main.video-playing .hero-content {
-    position: relative;
-    z-index: 2;
+  @media (max-width: 768px) {
+    .promo-video-section {
+      height: 60vh;
+    }
   }
 </style>
 
@@ -964,35 +945,33 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Hero Background Video
-  const heroMain = document.querySelector('.hero-main');
-  const heroVideoBg = document.getElementById('heroVideoBg');
+  // Promo Video Section
   const heroYoutubeVideo = document.getElementById('heroYoutubeVideo');
+  const promoVideoSection = document.getElementById('promoVideo');
   const youtubeVideoId = 'iJBsRnpyZbs';
   const videoDuration = 30000; // Video plays for 30 seconds
-  const imageDuration = 3000; // Image shows for 3 seconds
 
-  function showVideo() {
-    // Set YouTube URL with autoplay, mute, and no controls (no loop)
-    heroYoutubeVideo.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1`;
-    heroVideoBg.classList.add('active');
-    heroMain.classList.add('video-playing');
+  function scrollToVideoAndPlay() {
+    // Smooth scroll to video section
+    promoVideoSection.scrollIntoView({ behavior: 'smooth' });
     
-    // After video duration, hide video and show image
-    setTimeout(hideVideo, videoDuration);
+    // Start video after scroll completes
+    setTimeout(function() {
+      heroYoutubeVideo.src = 'https://www.youtube.com/embed/' + youtubeVideoId + '?autoplay=1&mute=1&loop=0&rel=0&modestbranding=1&playsinline=1';
+    }, 800);
+    
+    // Scroll back to top after video duration
+    setTimeout(scrollBackToTop, videoDuration + 1000);
   }
 
-  function hideVideo() {
-    heroVideoBg.classList.remove('active');
-    heroMain.classList.remove('video-playing');
-    heroYoutubeVideo.src = ''; // Stop the video
-    
-    // After image duration, play video again
-    setTimeout(showVideo, imageDuration);
+  function scrollBackToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Stop the video
+    heroYoutubeVideo.src = '';
   }
 
-  // Start the cycle after initial 3 seconds
-  setTimeout(showVideo, imageDuration);
+  // Scroll to video section after 3 seconds
+  setTimeout(scrollToVideoAndPlay, 3000);
 </script>
 
 </body>
