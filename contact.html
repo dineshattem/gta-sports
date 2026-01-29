@@ -167,47 +167,47 @@
           <span class="name-tag">SaiKiran Bachu</span>
           <span class="name-tag">Dinesh Attem</span>
           <span class="name-tag">Kiran Mooga</span>
-          <span class="name-tag">Naveen Jadav</span>
+          <span class="name-tag">Naveen Jadow</span>
           <span class="name-tag">Shravya Velide</span>
           <span class="name-tag">Karteek GVA</span>
-          <span class="name-tag">Santhosh Avva</span>
-          <span class="name-tag">Vineel</span>
+          <span class="name-tag">Kranthi Boorgula</span>
           <span class="name-tag">Sai Mukka</span>
-          <span class="name-tag">Kranthi</span>
+          <span class="name-tag">Santhosh Avva</span>
+          <span class="name-tag">Vineel Siddam</span>
         </div>
       </div>
       
       <div class="thanks-group">
         <h4>💪 GTA Volunteers</h4>
         <div class="names-grid volunteers">
-          <span class="name-tag volunteer">Ravi Teja Yarlagadda</span>
-          <span class="name-tag volunteer">Tagore Bandlamudi</span>
-          <span class="name-tag volunteer">Swapnil Haria</span>
-          <span class="name-tag volunteer">Vishnu Bollu</span>
-          <span class="name-tag volunteer">Pradeep Chalavadi</span>
-          <span class="name-tag volunteer">Chaitanya Pasupula</span>
-          <span class="name-tag volunteer">Hemanth Paruchuri</span>
-          <span class="name-tag volunteer">Saketh Chidepudi</span>
-          <span class="name-tag volunteer">Sai Sandeep Karella</span>
-          <span class="name-tag volunteer">Dinesh Kadari</span>
-          <span class="name-tag volunteer">Karthik Alugubelly</span>
+          <span class="name-tag volunteer">Akshita Reddy Pentala</span>
+          <span class="name-tag volunteer">Anitha Rathod</span>
           <span class="name-tag volunteer">Anushree Singh</span>
-          <span class="name-tag volunteer">Kasinath Nalla</span>
-          <span class="name-tag volunteer">Suren</span>
-          <span class="name-tag volunteer">Swapnil</span>
           <span class="name-tag volunteer">Apoorva Bura</span>
-          <span class="name-tag volunteer">Sravya Venumuddala</span>
-          <span class="name-tag volunteer">Srujana Daram</span>
+          <span class="name-tag volunteer">Chaitanya Pasupula</span>
+          <span class="name-tag volunteer">Dinesh Kadari</span>
+          <span class="name-tag volunteer">Hemanth Paruchuri</span>
+          <span class="name-tag volunteer">Karthik Alugubelly</span>
+          <span class="name-tag volunteer">Kasinath Nalla</span>
+          <span class="name-tag volunteer">Nithisha Sayabugari</span>
+          <span class="name-tag volunteer">Pradeep Chalavadi</span>
+          <span class="name-tag volunteer">Ravi Teja Yarlagadda</span>
+          <span class="name-tag volunteer">Sai Sandeep Karella</span>
+          <span class="name-tag volunteer">Saketh Chidepudi</span>
           <span class="name-tag volunteer">Sandhya Gandra</span>
           <span class="name-tag volunteer">Sarika Prodduturi</span>
-          <span class="name-tag volunteer">Sherali</span>
-          <span class="name-tag volunteer">Akshita</span>
+          <span class="name-tag volunteer">Sharali Reddy Pentala</span>
           <span class="name-tag volunteer">Shashi Margam</span>
-          <span class="name-tag volunteer">Shivani</span>
+          <span class="name-tag volunteer">Shivani Arbat</span>
+          <span class="name-tag volunteer">Sravya Venumuddala</span>
+          <span class="name-tag volunteer">Srujana Daram</span>
+          <span class="name-tag volunteer">Suren Raman</span>
+          <span class="name-tag volunteer">Swapnil Haria</span>
           <span class="name-tag volunteer">Swetha Avva</span>
-          <span class="name-tag volunteer">Vasavi</span>
-          <span class="name-tag volunteer">Anitha</span>
-          <span class="name-tag volunteer">Nithisha</span>
+          <span class="name-tag volunteer">Tagore Bandlamudi</span>
+          <span class="name-tag volunteer">Vasavi Gopireddy</span>
+          <span class="name-tag volunteer">Venkateswara Rao Bezawada</span>
+          <span class="name-tag volunteer">Vishnu Bollu</span>
         </div>
       </div>
     </div>
@@ -587,6 +587,26 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
+  }
+  
+  .names-grid.volunteers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .names-grid.volunteers {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .names-grid.volunteers {
+      grid-template-columns: 1fr;
+    }
   }
 
   .name-tag {

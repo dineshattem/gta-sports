@@ -270,6 +270,65 @@
     color: var(--text-muted);
     font-style: italic;
   }
+  
+  /* Mobile styles for Match Center */
+  @media (max-width: 768px) {
+    .division-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .division-header h3 {
+      font-size: 1.3rem;
+      width: 100%;
+    }
+    
+    .division-stats {
+      font-size: 0.8rem;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .division-results {
+      width: 100%;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .division-winner,
+    .division-runner {
+      width: 100%;
+      justify-content: center;
+      padding: 12px 15px;
+      font-size: 0.9rem;
+    }
+    
+    .division-winner span:first-child,
+    .division-runner span:first-child {
+      font-size: 1.2rem;
+    }
+    
+    .division-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    
+    .division-tab {
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    
+    .bracket-frame iframe {
+      height: 400px;
+    }
+    
+    .divisions-overview {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
 <!-- Page Content -->
@@ -291,7 +350,7 @@
     <div id="div1" class="division-content active" data-tournament="975r78jt">
       <div class="division-header">
         <h3>🏆 Division 1</h3>
-        <span class="division-stats">12 players • 6 teams • ~11 games</span>
+        <span class="division-stats">12 players • 6 teams • 10 games</span>
         <div class="division-results">
           <div class="division-winner pending">
             <span>🥇</span>
@@ -312,7 +371,7 @@
     <div id="div2" class="division-content" data-tournament="4iwjz969">
       <div class="division-header">
         <h3>🏆 Division 2</h3>
-        <span class="division-stats">16 players • 8 teams • ~15 games</span>
+        <span class="division-stats">16 players • 8 teams • 14 games</span>
         <div class="division-results">
           <div class="division-winner pending">
             <span>🥇</span>
@@ -333,7 +392,7 @@
     <div id="div3" class="division-content" data-tournament="kkh9wvri">
       <div class="division-header">
         <h3>🏆 Division 3</h3>
-        <span class="division-stats">32 players • 16 teams • ~21 games</span>
+        <span class="division-stats">32 players • 16 teams • 30 games</span>
         <div class="division-results">
           <div class="division-winner pending">
             <span>🥇</span>
@@ -354,7 +413,7 @@
     <div id="div4" class="division-content" data-tournament="85uzjkh3">
       <div class="division-header">
         <h3>🏆 Division 4</h3>
-        <span class="division-stats">22 players • 11 teams • ~21 games</span>
+        <span class="division-stats">22 players • 11 teams • 20 games</span>
         <div class="division-results">
           <div class="division-winner pending">
             <span>🥇</span>
@@ -375,7 +434,7 @@
     <div id="womens" class="division-content" data-tournament="b3z4z0jl">
       <div class="division-header">
         <h3>🏆 Women's Division</h3>
-        <span class="division-stats">10 players • 5 teams • ~14 games</span>
+        <span class="division-stats">10 players • 5 teams • 8 games</span>
         <div class="division-results">
           <div class="division-winner pending">
             <span>🥇</span>
