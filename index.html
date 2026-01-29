@@ -380,43 +380,6 @@
   </div>
 </section>
 
-<!-- Promo Video Section -->
-<section class="promo-video-section" id="promoVideo">
-  <iframe id="heroYoutubeVideo" 
-    src="" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</section>
-
-<style>
-  .promo-video-section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: #000;
-    overflow: hidden;
-  }
-  
-  .promo-video-section iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 56.25vw;
-    min-height: 100vh;
-    min-width: 177.78vh;
-    transform: translate(-50%, -50%);
-  }
-  
-  @media (max-width: 768px) {
-    .promo-video-section {
-      height: 60vh;
-    }
-  }
-</style>
-
 <!-- Tournament Perks Section -->
 <section class="perks-section">
   <div class="container">
@@ -555,7 +518,6 @@
     
     <!-- Title Sponsor -->
     <div class="sponsor-tier">
-      <span class="tier-label">Title Sponsor</span>
       <div class="tier-grid tier-title">
         <a href="#" class="sponsor-card sponsor-title">
           <img src="assets/indiafoodslogo.png" alt="India Foods">
@@ -565,7 +527,6 @@
     
     <!-- Gold Sponsors -->
     <div class="sponsor-tier">
-      <span class="tier-label">Gold Sponsors</span>
       <div class="tier-grid tier-gold">
         <a href="#" class="sponsor-card sponsor-gold">
           <img src="assets/andy.png" alt="Andy">
@@ -581,7 +542,6 @@
     
     <!-- Silver Sponsor -->
     <div class="sponsor-tier">
-      <span class="tier-label">Silver Sponsor</span>
       <div class="tier-grid tier-silver">
         <a href="#" class="sponsor-card sponsor-silver">
           <img src="assets/sunshinelogo.png" alt="Sunshine Pro">
@@ -594,26 +554,19 @@
       <span class="tier-label">Food & Hospitality Partners</span>
       <div class="tier-grid tier-hospitality">
         <a href="#" class="sponsor-card sponsor-hospitality">
-          <img src="assets/primerpickleball.jpeg" alt="Primer Pickleball">
+          <img src="assets/primerpickleball.jpeg" alt="Primer Pickleball" style="height: 100px;">
         </a>
         <a href="#" class="sponsor-card sponsor-hospitality">
           <img src="assets/slimchickens.webp" alt="Slim Chickens">
         </a>
         <a href="#" class="sponsor-card sponsor-hospitality">
-          <img src="assets/slackwater.webp" alt="Slackwater">
+          <img src="assets/slackwater.webp" alt="Slackwater" style="height: 40px;">
+        </a>
+        <a href="#" class="sponsor-card sponsor-hospitality">
+          <img src="assets/einsteinbagels.png" alt="Einstein Bagels">
         </a>
         <a href="#" class="sponsor-card sponsor-hospitality">
           <img src="assets/thirstlogo.jpeg" alt="Thirst">
-        </a>
-      </div>
-    </div>
-    
-    <!-- Supporting Partner -->
-    <div class="sponsor-tier">
-      <span class="tier-label tier-label-small">Supporting Partner</span>
-      <div class="tier-grid tier-supporting">
-        <a href="#" class="sponsor-card sponsor-supporting">
-          <img src="assets/einsteinbagels.png" alt="Einstein Bagels">
         </a>
       </div>
     </div>
@@ -676,62 +629,56 @@
   
   /* Title Sponsor - Largest */
   .sponsor-title {
-    padding: 25px 35px;
-    min-width: 350px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid var(--orange);
     box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
   }
   
   .sponsor-title img {
-    max-height: 280px;
-    max-width: 450px;
+    height: 200px;
     width: auto;
     object-fit: contain;
   }
   
   /* Gold Sponsors - Medium */
   .sponsor-gold {
-    padding: 20px 30px;
-    min-width: 240px;
+    padding: 12px;
   }
   
   .sponsor-gold img {
-    max-height: 200px;
-    max-width: 350px;
+    height: 120px;
     width: auto;
     object-fit: contain;
   }
   
   /* Silver Sponsor - Smaller */
   .sponsor-silver {
-    padding: 15px 25px;
-    min-width: 200px;
+    padding: 12px;
   }
   
   .sponsor-silver img {
-    max-height: 140px;
-    max-width: 280px;
+    height: 100px;
     width: auto;
     object-fit: contain;
   }
   
   /* Hospitality Partners - Medium */
   .sponsor-hospitality {
-    padding: 25px 35px;
-    min-width: 180px;
+    padding: 12px;
   }
   
   .sponsor-hospitality img {
-    max-height: 120px;
-    max-width: 220px;
+    height: 80px;
     width: auto;
     object-fit: contain;
   }
   
   /* Supporting Partner - Smallest */
   .sponsor-supporting {
-    padding: 20px 30px;
-    min-width: 140px;
+    padding: 12px;
   }
   
   .sponsor-supporting img {
@@ -944,34 +891,6 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
-
-  // Promo Video Section
-  const heroYoutubeVideo = document.getElementById('heroYoutubeVideo');
-  const promoVideoSection = document.getElementById('promoVideo');
-  const youtubeVideoId = 'iJBsRnpyZbs';
-  const videoDuration = 30000; // Video plays for 30 seconds
-
-  function scrollToVideoAndPlay() {
-    // Smooth scroll to video section
-    promoVideoSection.scrollIntoView({ behavior: 'smooth' });
-    
-    // Start video after scroll completes
-    setTimeout(function() {
-      heroYoutubeVideo.src = 'https://www.youtube.com/embed/' + youtubeVideoId + '?autoplay=1&mute=1&loop=0&rel=0&modestbranding=1&playsinline=1';
-    }, 800);
-    
-    // Scroll back to top after video duration
-    setTimeout(scrollBackToTop, videoDuration + 1000);
-  }
-
-  function scrollBackToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    // Stop the video
-    heroYoutubeVideo.src = '';
-  }
-
-  // Scroll to video section after 3 seconds
-  setTimeout(scrollToVideoAndPlay, 3000);
 </script>
 
 </body>

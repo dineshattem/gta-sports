@@ -745,6 +745,16 @@ footer {
   height: 130px;
 }
 
+@media (max-width: 768px) {
+  .footer-brand img {
+    height: 50px;
+  }
+  
+  .footer-brand img.footer-gta-logo {
+    height: 50px;
+  }
+}
+
 .footer-links {
   display: flex;
   gap: 30px;
