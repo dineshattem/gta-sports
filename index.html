@@ -107,7 +107,7 @@
         <div class="event-info-divider"></div>
         <div class="event-info-item">
           <span class="event-icon">🕐</span>
-          <span>10 AM - 4 PM</span>
+          <span>10 AM - 4:30 PM</span>
         </div>
         <div class="event-info-divider"></div>
         <div class="event-info-item">
@@ -147,15 +147,15 @@
       <!-- Quick Stats -->
       <div class="hero-quick-stats">
         <div class="quick-stat">
-          <span class="quick-stat-value">4</span>
+          <span class="quick-stat-value">5</span>
           <span class="quick-stat-label">Divisions</span>
         </div>
         <div class="quick-stat">
-          <span class="quick-stat-value">45</span>
+          <span class="quick-stat-value">48</span>
           <span class="quick-stat-label">Teams</span>
         </div>
         <div class="quick-stat">
-          <span class="quick-stat-value">90</span>
+          <span class="quick-stat-value">96</span>
           <span class="quick-stat-label">Players</span>
         </div>
         <div class="quick-stat highlight">
@@ -256,40 +256,127 @@
         font-size: 1.4rem;
       }
     }
+    
+    /* Updates Section Styles */
+    .updates-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .update-card {
+      display: flex;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      padding: 12px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+    
+    .update-card:hover {
+      background: rgba(255, 140, 0, 0.08);
+      border-color: rgba(255, 140, 0, 0.2);
+    }
+    
+    .update-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 45px;
+      padding: 8px;
+      background: linear-gradient(135deg, var(--orange), #ff6b00);
+      border-radius: 8px;
+    }
+    
+    .update-day {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+    
+    .update-month {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .update-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+    
+    .update-icon {
+      font-size: 1.3rem;
+    }
+    
+    .update-text h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin: 0 0 2px 0;
+    }
+    
+    .update-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
   </style>
   
   <div class="hero-sidebar">
-    <h3 class="sidebar-title">Recent Post</h3>
+    <h3 class="sidebar-title">Updates</h3>
     
-    <article class="recent-post">
-      <div class="recent-post-img">
-        <span>🏓</span>
-      </div>
-      <div class="recent-post-content">
-        <h4>Registration Now Closed for Season 1</h4>
-        <p class="recent-post-date">January 20, 2026</p>
-      </div>
-    </article>
-    
-    <article class="recent-post">
-      <div class="recent-post-img">
-        <span>🏆</span>
-      </div>
-      <div class="recent-post-content">
-        <h4>Tournament Schedule Released</h4>
-        <p class="recent-post-date">January 15, 2026</p>
-      </div>
-    </article>
-    
-    <article class="recent-post">
-      <div class="recent-post-img">
-        <span>📍</span>
-      </div>
-      <div class="recent-post-content">
-        <h4>Venue Confirmed: Premier Pickleball Club</h4>
-        <p class="recent-post-date">January 10, 2026</p>
-      </div>
-    </article>
+    <div class="updates-list">
+      <article class="update-card">
+        <div class="update-date">
+          <span class="update-day">20</span>
+          <span class="update-month">Dec</span>
+        </div>
+        <div class="update-content">
+          <span class="update-icon">🔒</span>
+          <div class="update-text">
+            <h4>Registration Closed</h4>
+            <p>Season 1 registration complete</p>
+          </div>
+        </div>
+      </article>
+      
+      <article class="update-card">
+        <div class="update-date">
+          <span class="update-day">03</span>
+          <span class="update-month">Dec</span>
+        </div>
+        <div class="update-content">
+          <span class="update-icon">📍</span>
+          <div class="update-text">
+            <h4>Venue Confirmed</h4>
+            <p>Premier Pickleball Club, Herriman</p>
+          </div>
+        </div>
+      </article>
+      
+      <article class="update-card">
+        <div class="update-date">
+          <span class="update-day">25</span>
+          <span class="update-month">Nov</span>
+        </div>
+        <div class="update-content">
+          <span class="update-icon">🎉</span>
+          <div class="update-text">
+            <h4>Registration Opens</h4>
+            <p>GPL Season 1 announced</p>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
