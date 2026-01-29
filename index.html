@@ -91,6 +91,15 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-main">
+    <!-- Background Video (YouTube) -->
+    <div class="hero-video-bg" id="heroVideoBg">
+      <iframe id="heroYoutubeVideo" 
+        src="" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
     <div class="hero-content">
       <!-- Organized By Badge -->
       <p class="presented-by">A <span>Global Telangana Association (GTA)</span> Utah Sports Event</p>
@@ -381,124 +390,49 @@
 </section>
 
 <!-- Video Modal Popup -->
-<div class="video-modal" id="videoModal">
-  <div class="video-modal-backdrop"></div>
-  <div class="video-modal-content">
-    <button class="video-modal-close" id="closeVideoModal">&times;</button>
-    <div class="video-modal-wrapper">
-      <iframe id="youtubeVideo" 
-        width="100%" 
-        height="100%" 
-        src="" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-</div>
-
 <style>
-  .video-modal {
-    position: fixed;
+  .hero-video-bg {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 0;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-  }
-  
-  .video-modal.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .video-modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(10px);
-  }
-  
-  .video-modal-content {
-    position: relative;
-    width: 90%;
-    max-width: 1000px;
-    transform: scale(0.8);
-    transition: transform 0.4s ease;
-  }
-  
-  .video-modal.active .video-modal-content {
-    transform: scale(1);
-  }
-  
-  .video-modal-close {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 140, 0, 0.9);
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
-  
-  .video-modal-close:hover {
-    background: var(--orange);
-    transform: scale(1.1);
-  }
-  
-  .video-modal-wrapper {
-    position: relative;
-    border-radius: 16px;
+    transition: opacity 1s ease;
+    pointer-events: none;
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 80px rgba(255, 140, 0, 0.3);
-    border: 3px solid rgba(255, 140, 0, 0.5);
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
   }
   
-  .video-modal-wrapper iframe {
+  .hero-video-bg.active {
+    opacity: 1;
+  }
+  
+  .hero-video-bg iframe {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
   }
   
-  @media (max-width: 768px) {
-    .video-modal-content {
-      width: 95%;
-    }
-    
-    .video-modal-close {
-      top: -45px;
-      width: 36px;
-      height: 36px;
-      font-size: 20px;
-    }
-    
-    .video-modal-wrapper {
-      border-radius: 12px;
-    }
+  .hero-main {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .hero-main.video-playing {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.75), rgba(15, 15, 26, 0.7));
+  }
+  
+  .hero-main.video-playing .hero-content {
+    position: relative;
+    z-index: 2;
   }
 </style>
 
@@ -653,13 +587,13 @@
       <span class="tier-label">Gold Sponsors</span>
       <div class="tier-grid tier-gold">
         <a href="#" class="sponsor-card sponsor-gold">
-          <img src="assets/paradiselogo.png" alt="Paradise">
+          <img src="assets/andy.png" alt="Andy">
         </a>
         <a href="#" class="sponsor-card sponsor-gold">
           <img src="assets/desikitchenlogo.png" alt="Desi Kitchen">
         </a>
         <a href="#" class="sponsor-card sponsor-gold">
-          <img src="assets/andy.png" alt="Andy">
+          <img src="assets/paradiselogo.png" alt="Paradise">
         </a>
       </div>
     </div>
@@ -1030,42 +964,35 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Video Modal Popup
-  const videoModal = document.getElementById('videoModal');
-  const youtubeVideo = document.getElementById('youtubeVideo');
-  const closeVideoModal = document.getElementById('closeVideoModal');
-  const videoBackdrop = document.querySelector('.video-modal-backdrop');
+  // Hero Background Video
+  const heroMain = document.querySelector('.hero-main');
+  const heroVideoBg = document.getElementById('heroVideoBg');
+  const heroYoutubeVideo = document.getElementById('heroYoutubeVideo');
   const youtubeVideoId = 'iJBsRnpyZbs';
+  const videoDuration = 30000; // Video plays for 30 seconds
+  const imageDuration = 3000; // Image shows for 3 seconds
 
-  function openVideoModal() {
-    videoModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    // Set YouTube URL with autoplay and mute (required for autoplay)
-    youtubeVideo.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&rel=0`;
+  function showVideo() {
+    // Set YouTube URL with autoplay, mute, and no controls (no loop)
+    heroYoutubeVideo.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1`;
+    heroVideoBg.classList.add('active');
+    heroMain.classList.add('video-playing');
+    
+    // After video duration, hide video and show image
+    setTimeout(hideVideo, videoDuration);
   }
 
-  function closeModal() {
-    videoModal.classList.remove('active');
-    document.body.style.overflow = '';
-    // Stop video by clearing src
-    youtubeVideo.src = '';
+  function hideVideo() {
+    heroVideoBg.classList.remove('active');
+    heroMain.classList.remove('video-playing');
+    heroYoutubeVideo.src = ''; // Stop the video
+    
+    // After image duration, play video again
+    setTimeout(showVideo, imageDuration);
   }
 
-  // Auto-popup after 3 seconds
-  setTimeout(openVideoModal, 3000);
-
-  // Close on X button click
-  closeVideoModal.addEventListener('click', closeModal);
-
-  // Close on backdrop click
-  videoBackdrop.addEventListener('click', closeModal);
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-      closeModal();
-    }
-  });
+  // Start the cycle after initial 3 seconds
+  setTimeout(showVideo, imageDuration);
 </script>
 
 </body>

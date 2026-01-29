@@ -332,9 +332,9 @@ a {
 
 /* ================= SIDEBAR (Recent Posts) ================= */
 .hero-sidebar {
-  width: 420px;
+  width: 340px;
   background: var(--bg-darker);
-  padding: 40px 30px;
+  padding: 40px 24px;
   display: flex;
   flex-direction: column;
 }
