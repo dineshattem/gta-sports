@@ -145,7 +145,7 @@ a {
   max-width: 300px;
   object-fit: contain;
   transition: all 0.3s ease;
-  margin-top: -20px;
+  margin-top: -30px;
 }
 
 .brand-gta:hover img {
