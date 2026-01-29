@@ -145,7 +145,7 @@ a {
   max-width: 300px;
   object-fit: contain;
   transition: all 0.3s ease;
-  margin-top: -30px;
+  margin-top: -25px;
 }
 
 .brand-gta:hover img {
@@ -890,24 +890,25 @@ footer {
   }
   
   .header-inner {
-    height: 70px;
+    height: 80px;
   }
   
   .brand img {
-    height: 50px;
+    height: 65px;
   }
   
   .brand-gta img {
-    height: 45px;
-    width: 45px;
+    height: 70px;
+    width: auto;
+    margin-top: -10px;
   }
   
   .brand-divider {
-    height: 30px;
+    height: 40px;
   }
   
   .hero {
-    margin-top: 70px;
+    margin-top: 80px;
   }
   
   .hero-main {
