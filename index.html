@@ -91,6 +91,13 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-main">
+    <!-- Background Slideshow -->
+    <div class="hero-slideshow">
+      <div class="slide active"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+    </div>
     <div class="hero-content">
       <!-- Organized By Badge -->
       <p class="presented-by">A <span>Global Telangana Association (GTA)</span> Utah Sports Event</p>
@@ -891,6 +898,19 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // Hero Background Slideshow
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  let currentSlide = 0;
+
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+
+  // Change slide every 5 seconds
+  setInterval(nextSlide, 5000);
 </script>
 
 </body>
