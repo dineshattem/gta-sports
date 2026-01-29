@@ -75,9 +75,16 @@ a {
 }
 
 .brand img {
-  height: 110px;
+  height: 90px;
   width: auto;
-  max-width: 200px;
+  max-width: 180px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.4));
+}
+
+.brand:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.6));
 }
 
 .brand-divider {
@@ -107,31 +114,41 @@ a {
 .brand-gta {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
-/* Home page animation only */
-.home-page .brand-gta {
+/* UTAH CHAPTER text under header logo */
+.utah-chapter {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #c9a227;
+  background: linear-gradient(180deg, #8b0000 0%, #600000 100%);
+  padding: 2px 10px;
+  border-radius: 3px;
+  margin-top: 3px;
+  letter-spacing: 1px;
+  border: 1px solid #c9a227;
+}
+
+/* Home page animation only - GPL logo slides in */
+.home-page .brand {
   animation: slideFromBehind 1s ease-out forwards;
 }
 
 .brand-gta img {
-  height: 50px;
-  width: 50px;
-  max-width: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+  height: 150px;
+  width: auto;
+  max-width: 300px;
+  object-fit: contain;
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
-}
-
-/* Home page glow animation with delay */
-.home-page .brand-gta img {
-  animation: gtaGlow 2s ease-in-out infinite 1s;
 }
 
 .brand-gta:hover img {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
+  transform: scale(1.05);
 }
 
 @keyframes slideFromBehind {
@@ -308,7 +325,7 @@ a {
 
 /* ================= SIDEBAR (Recent Posts) ================= */
 .hero-sidebar {
-  width: 350px;
+  width: 420px;
   background: var(--bg-darker);
   padding: 40px 30px;
   display: flex;
@@ -364,18 +381,20 @@ a {
 
 /* ================= SPONSORS ================= */
 .sponsors-section {
-  background: var(--bg-darker);
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8eb 100%);
   padding: 60px 0;
 }
 
 .sponsors-section h2 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 900;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  text-align: center;
+  color: #1a1a2e;
 }
 
-.sponsors-grid {
+.sponsors-row {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,27 +402,53 @@ a {
   flex-wrap: wrap;
 }
 
-.sponsor-logo {
-  background: rgba(255,255,255,0.1);
-  padding: 20px 40px;
-  border-radius: 8px;
+.sponsor-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-width: 150px;
-  height: 80px;
-  transition: all 0.3s ease;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
 }
 
-.sponsor-logo:hover {
-  background: rgba(255,255,255,0.15);
+.sponsor-card:hover {
   transform: scale(1.05);
 }
 
-.sponsor-logo span {
+.sponsor-tier {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
   font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  border-radius: 3px;
+}
+
+.sponsor-card.platinum .sponsor-tier {
+  background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+  color: #fff;
+}
+
+.sponsor-card.gold .sponsor-tier {
+  background: linear-gradient(135deg, #FFD700, #e6ac00);
+  color: #1a1a2e;
+}
+
+.sponsor-card.silver .sponsor-tier {
+  background: linear-gradient(135deg, #808080, #606060);
+  color: #fff;
+}
+
+.sponsor-card img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.sponsor-card:hover img {
+  transform: scale(1.02);
 }
 
 /* ================= BUTTONS ================= */
@@ -686,7 +731,11 @@ footer {
 }
 
 .footer-brand img {
-  height: 70px;
+  height: 100px;
+}
+
+.footer-brand img.footer-gta-logo {
+  height: 130px;
 }
 
 .footer-links {
@@ -798,8 +847,8 @@ footer {
   }
   
   .brand-gta img {
-    height: 40px;
-    width: 40px;
+    height: 55px;
+    width: 55px;
   }
 }
 
@@ -848,8 +897,8 @@ footer {
   }
   
   .brand-gta img {
-    height: 30px;
-    width: 30px;
+    height: 45px;
+    width: 45px;
   }
   
   .brand-divider {
