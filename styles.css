@@ -290,7 +290,7 @@ a {
   .hero-slideshow .slide {
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center 50px;
+    background-position: center 170px;
     background-color: var(--bg-dark);
   }
 }
@@ -305,6 +305,9 @@ a {
 
 .hero-slideshow .slide:nth-child(2) {
   background-image: url("assets/gtaboard.png");
+  background-size: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .hero-slideshow .slide:nth-child(3) {
@@ -317,6 +320,9 @@ a {
 
 .hero-slideshow .slide:nth-child(5) {
   background-image: url("assets/desipartners.png");
+  background-size: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .hero-slideshow .slide:nth-child(6) {
