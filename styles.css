@@ -304,14 +304,18 @@ a {
 }
 
 .hero-slideshow .slide:nth-child(2) {
-  background-image: url("assets/slide1.jpeg");
+  background-image: url("assets/gtaboard.png");
 }
 
 .hero-slideshow .slide:nth-child(3) {
-  background-image: url("assets/slide2.jpeg");
+  background-image: url("assets/slide1.jpeg");
 }
 
 .hero-slideshow .slide:nth-child(4) {
+  background-image: url("assets/slide2.jpeg");
+}
+
+.hero-slideshow .slide:nth-child(5) {
   background-image: url("assets/slide3.jpg");
 }
 
