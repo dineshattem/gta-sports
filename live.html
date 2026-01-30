@@ -676,8 +676,10 @@
         const isFinished = tournament.progressMeter === 100 || tournament.state === 'awaiting_review' || tournament.state === 'complete';
         
         if (isFinished && standings.length >= 2) {
-          const winner = standings.find(s => s.rank === 1);
-          const runner = standings.find(s => s.rank === 2);
+          // Get winner (first in standings with rank 1)
+          const winner = standings[0];
+          // Get runner-up (either rank 2, or second player if two are tied at rank 1)
+          const runner = standings.find(s => s.rank === 2) || standings[1];
           
           if (winner && runner) {
             // Update the division header results
