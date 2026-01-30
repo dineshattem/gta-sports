@@ -457,6 +457,12 @@ a {
   background-repeat: no-repeat;
 }
 
+@media (max-width: 768px) and (orientation: portrait) {
+  .hero-slideshow .slide:nth-child(2) {
+    background-image: url("assets/gtaboard-potriat.png");
+  }
+}
+
 .hero-slideshow .slide:nth-child(3) {
   background-image: url("assets/slide1.jpeg");
 }
