@@ -97,8 +97,6 @@
       <div class="slide"></div>
       <div class="slide"></div>
       <div class="slide"></div>
-      <div class="slide"></div>
-      <div class="slide"></div>
     </div>
     <div class="hero-content">
       <!-- Organized By Badge -->
@@ -106,6 +104,9 @@
       
       <h1>Grand Pickleball League</h1>
       <p>Premium pickleball tournament experience with live brackets, competitive matches, and exciting gameplay.</p>
+      
+      <!-- Mobile Slideshow Container -->
+      <div class="mobile-slideshow-container"></div>
       
       <!-- Event Info Banner -->
       <div class="event-info-banner">
@@ -918,6 +919,28 @@
 
   // Change slide every 5 seconds
   setInterval(nextSlide, 5000);
+
+  // Move slideshow to mobile container on portrait mobile
+  function handleSlideshowPosition() {
+    const slideshow = document.querySelector('.hero-slideshow');
+    const mobileContainer = document.querySelector('.mobile-slideshow-container');
+    const heroMain = document.querySelector('.hero-main');
+    
+    if (window.innerWidth <= 768 && window.innerHeight > window.innerWidth) {
+      // Mobile portrait - move slideshow into mobile container
+      if (mobileContainer && !mobileContainer.contains(slideshow)) {
+        mobileContainer.appendChild(slideshow);
+      }
+    } else {
+      // Desktop - move slideshow back to hero-main (first child)
+      if (heroMain && !heroMain.contains(slideshow)) {
+        heroMain.insertBefore(slideshow, heroMain.firstChild);
+      }
+    }
+  }
+
+  handleSlideshowPosition();
+  window.addEventListener('resize', handleSlideshowPosition);
 </script>
 
 </body>

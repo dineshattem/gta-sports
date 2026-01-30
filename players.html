@@ -93,12 +93,47 @@
   <div class="container">
     <h2>Registered Teams</h2>
     <p style="color: var(--text-muted); margin-bottom: 20px;">46 Doubles Teams • 92 Players</p>
-    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">
-      <strong style="color: var(--orange);">Check-in Times:</strong> 
-      <span class="group-badge group-a" style="margin-left: 10px;">Group A</span> 9:15 AM &nbsp;|&nbsp;
-      <span class="group-badge group-b">Group B</span> 11:45 AM &nbsp;|&nbsp;
-      <span class="group-badge group-c">Group C</span> 1:45 PM
-    </p>
+    <div class="checkin-times" style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">
+      <strong style="color: var(--orange);">Check-in Times:</strong>
+      <span class="checkin-item"><span class="group-badge group-a">Group A</span> 9:15 AM</span>
+      <span class="checkin-divider">|</span>
+      <span class="checkin-item"><span class="group-badge group-b">Group B</span> 11:45 AM</span>
+      <span class="checkin-divider">|</span>
+      <span class="checkin-item"><span class="group-badge group-c">Group C</span> 1:45 PM</span>
+    </div>
+    
+    <style>
+      .checkin-times {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+      .checkin-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .checkin-divider {
+        color: var(--text-muted);
+      }
+      @media (max-width: 768px) {
+        .checkin-times {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .checkin-times strong {
+          margin-bottom: 5px;
+        }
+        .checkin-divider {
+          display: none;
+        }
+        .checkin-item {
+          gap: 10px;
+        }
+      }
+    </style>
     
     <!-- Search Bar -->
     <div class="search-container">
@@ -286,13 +321,6 @@
       
       .teams-grid {
         display: none;
-      }
-      
-      @media (max-width: 900px) {
-        .teams-table th:nth-child(4),
-        .teams-table td:nth-child(4) {
-          display: none;
-        }
       }
       
       @media (max-width: 768px) {
@@ -969,40 +997,98 @@
 <section class="section section-dark">
   <div class="container">
     <h2>Division Summary</h2>
-    <div class="grid" style="grid-template-columns: repeat(5, 1fr);">
-      <div class="card" style="border-left: 4px solid #e74c3c;">
+    <div class="grid division-summary-grid" style="grid-template-columns: repeat(5, 1fr);">
+      <div class="card division-card" style="border-left: 4px solid #e74c3c;">
         <h3 class="card-title" style="color: #e74c3c;">Division 1</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">6</p>
-        <p style="color: var(--text-muted);">Teams</p>
-        <p style="color: #3498db; font-weight: 600; margin-top: 8px;">Group B</p>
+        <div class="division-stat">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Teams</span>
+        </div>
+        <span class="group-badge group-b">Group B</span>
       </div>
-      <div class="card" style="border-left: 4px solid #3498db;">
+      <div class="card division-card" style="border-left: 4px solid #3498db;">
         <h3 class="card-title" style="color: #3498db;">Division 2</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">8</p>
-        <p style="color: var(--text-muted);">Teams</p>
-        <p style="color: #3498db; font-weight: 600; margin-top: 8px;">Group B</p>
+        <div class="division-stat">
+          <span class="stat-number">8</span>
+          <span class="stat-label">Teams</span>
+        </div>
+        <span class="group-badge group-b">Group B</span>
       </div>
-      <div class="card" style="border-left: 4px solid #27ae60;">
+      <div class="card division-card" style="border-left: 4px solid #27ae60;">
         <h3 class="card-title" style="color: #27ae60;">Division 3</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">16</p>
-        <p style="color: var(--text-muted);">Teams</p>
-        <p style="color: #27ae60; font-weight: 600; margin-top: 8px;">Group C</p>
+        <div class="division-stat">
+          <span class="stat-number">16</span>
+          <span class="stat-label">Teams</span>
+        </div>
+        <span class="group-badge group-c">Group C</span>
       </div>
-      <div class="card" style="border-left: 4px solid #9b59b6;">
+      <div class="card division-card" style="border-left: 4px solid #9b59b6;">
         <h3 class="card-title" style="color: #9b59b6;">Division 4</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">11</p>
-        <p style="color: var(--text-muted);">Teams</p>
-        <p style="color: #e74c3c; font-weight: 600; margin-top: 8px;">Group A</p>
+        <div class="division-stat">
+          <span class="stat-number">11</span>
+          <span class="stat-label">Teams</span>
+        </div>
+        <span class="group-badge group-a">Group A</span>
       </div>
-      <div class="card" style="border-left: 4px solid #e91e63;">
+      <div class="card division-card" style="border-left: 4px solid #e91e63;">
         <h3 class="card-title" style="color: #e91e63;">Women's</h3>
-        <p style="font-size: 2rem; font-weight: 900; margin: 10px 0;">5</p>
-        <p style="color: var(--text-muted);">Teams</p>
-        <p style="color: #e74c3c; font-weight: 600; margin-top: 8px;">Group A</p>
+        <div class="division-stat">
+          <span class="stat-number">5</span>
+          <span class="stat-label">Teams</span>
+        </div>
+        <span class="group-badge group-a">Group A</span>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .division-card {
+    text-align: center;
+    padding: 20px 15px !important;
+  }
+  .division-card .card-title {
+    margin-bottom: 15px;
+  }
+  .division-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .division-stat .stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .division-stat .stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  .division-card .group-badge {
+    display: inline-block;
+  }
+  
+  @media (max-width: 768px) {
+    .division-summary-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 15px;
+    }
+    .division-card {
+      padding: 15px 10px !important;
+    }
+    .division-stat .stat-number {
+      font-size: 2rem;
+    }
+  }
+  }
+  @media (max-width: 480px) {
+    .division-summary-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
 
 <!-- Footer -->
 <footer>
