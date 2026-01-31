@@ -361,11 +361,11 @@
         <h3>🏆 Division 1</h3>
         <span class="division-stats">12 players • 6 teams • 10 games</span>
         <div class="division-results">
-          <div class="division-winner pending">
+          <div class="division-winner">
             <span>🥇</span>
             <span>Winner: TBD</span>
           </div>
-          <div class="division-runner pending">
+          <div class="division-runner">
             <span>🥈</span>
             <span>Runner-up: TBD</span>
           </div>
@@ -382,11 +382,11 @@
         <h3>🏆 Division 2</h3>
         <span class="division-stats">16 players • 8 teams • 14 games</span>
         <div class="division-results">
-          <div class="division-winner pending">
+          <div class="division-winner">
             <span>🥇</span>
             <span>Winner: TBD</span>
           </div>
-          <div class="division-runner pending">
+          <div class="division-runner">
             <span>🥈</span>
             <span>Runner-up: TBD</span>
           </div>
@@ -403,11 +403,11 @@
         <h3>🏆 Division 3</h3>
         <span class="division-stats">32 players • 16 teams • 30 games</span>
         <div class="division-results">
-          <div class="division-winner pending">
+          <div class="division-winner">
             <span>🥇</span>
             <span>Winner: TBD</span>
           </div>
-          <div class="division-runner pending">
+          <div class="division-runner">
             <span>🥈</span>
             <span>Runner-up: TBD</span>
           </div>
@@ -472,23 +472,23 @@
       <div class="division-card" data-division="div1" onclick="showDivision('div1'); window.scrollTo({top: 200, behavior: 'smooth'});">
         <h4>🏆 Division 1</h4>
         <p class="winner-label">🥇 Champion</p>
-        <p class="winner-name pending">To be determined</p>
+        <p class="winner-name">TBD</p>
         <p class="winner-label" style="margin-top: 10px;">🥈 Runner-up</p>
-        <p class="runner-name pending">To be determined</p>
+        <p class="runner-name">TBD</p>
       </div>
       <div class="division-card" data-division="div2" onclick="showDivision('div2'); window.scrollTo({top: 200, behavior: 'smooth'});">
         <h4>🏆 Division 2</h4>
         <p class="winner-label">🥇 Champion</p>
-        <p class="winner-name pending">To be determined</p>
+        <p class="winner-name">TBD</p>
         <p class="winner-label" style="margin-top: 10px;">🥈 Runner-up</p>
-        <p class="runner-name pending">To be determined</p>
+        <p class="runner-name">TBD</p>
       </div>
       <div class="division-card" data-division="div3" onclick="showDivision('div3'); window.scrollTo({top: 200, behavior: 'smooth'});">
         <h4>🏆 Division 3</h4>
         <p class="winner-label">🥇 Champion</p>
-        <p class="winner-name pending">To be determined</p>
+        <p class="winner-name">TBD</p>
         <p class="winner-label" style="margin-top: 10px;">🥈 Runner-up</p>
-        <p class="runner-name pending">To be determined</p>
+        <p class="runner-name">TBD</p>
       </div>
       <div class="division-card" data-division="div4" onclick="showDivision('div4'); window.scrollTo({top: 200, behavior: 'smooth'});">
         <h4>🏆 Division 4</h4>
@@ -656,81 +656,7 @@
     if (division && ['div1', 'div2', 'div3', 'div4', 'womens'].includes(division)) {
       showDivision(division);
     }
-    
-    // Load standings for all divisions to show winner/runner-up
-    loadAllDivisionResults();
   });
-  
-  // Fetch and display winner/runner-up for all divisions
-  const API_BASE = 'https://challonge-standings-api.dinesh-attem.workers.dev';
-  
-  async function loadAllDivisionResults() {
-    const divisions = document.querySelectorAll('.division-content[data-tournament]');
-    
-    divisions.forEach(async (div) => {
-      const tournamentId = div.dataset.tournament;
-      const divId = div.id;
-      if (!tournamentId) return;
-      
-      // Skip divisions with manually set results (no 'pending' class)
-      const resultsDiv = div.querySelector('.division-results');
-      if (resultsDiv && !resultsDiv.querySelector('.pending')) return;
-      
-      try {
-        const response = await fetch(`${API_BASE}/standings/${tournamentId}`);
-        if (!response.ok) return;
-        
-        const data = await response.json();
-        if (data.error) return;
-        
-        const { tournament, standings } = data;
-        
-        // Only show results if tournament is complete or awaiting review
-        const isFinished = tournament.progressMeter === 100 || tournament.state === 'awaiting_review' || tournament.state === 'complete';
-        
-        if (isFinished && standings.length >= 2) {
-          // Get winner (first in standings with rank 1)
-          const winner = standings[0];
-          // Get runner-up (either rank 2, or second player if two are tied at rank 1)
-          const runner = standings.find(s => s.rank === 2) || standings[1];
-          
-          if (winner && runner) {
-            // Update the division header results
-            const resultsDiv = div.querySelector('.division-results');
-            if (resultsDiv) {
-              resultsDiv.innerHTML = `
-                <div class="division-winner">
-                  <span>🥇</span>
-                  <span>Winner: ${winner.name}</span>
-                </div>
-                <div class="division-runner">
-                  <span>🥈</span>
-                  <span>Runner-up: ${runner.name}</span>
-                </div>
-              `;
-            }
-            
-            // Also update the division card in the overview section
-            const card = document.querySelector(`.division-card[data-division="${divId}"]`);
-            if (card) {
-              const winnerName = card.querySelector('.winner-name');
-              const runnerName = card.querySelector('.runner-name');
-              if (winnerName) {
-                winnerName.textContent = winner.name;
-                winnerName.classList.remove('pending');
-              }
-              if (runnerName) {
-                runnerName.textContent = runner.name;
-                runnerName.classList.remove('pending');
-              }
-            }
-          }
-        }
-      } catch (error) {
-        console.error(`Error loading results for ${tournamentId}:`, error);
-      }
-    });
-  }
 
   // Hamburger Menu Toggle
   const hamburger = document.getElementById('hamburger');
